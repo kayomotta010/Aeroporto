@@ -1,0 +1,73 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.painel-aeroporto {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+    font-family: cursive;
+}
+
+#pista {
+    height: 100px;
+    position: relative;
+    margin: 20px 0;
+    border-radius: 5px;
+    border-bottom: 5px dashed white;
+}
+#aviao {
+    font-size: 50px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    transition: all 2s ease;
+}
+
+/* Classe que será adicionada via JS para animar o avião */
+.voando {
+    transform: translate(10100px, -70px) rotate(-50000deg);
+}
+
+.info-voo {
+    text-align: left;
+    background: #eef2f3;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Estado: Voando (fora da tela pela direita) */
+.decolado {
+    left: 10000% !important; /* Move para fora da direita */
+    transform: translateY(-40px) rotate(-10000deg);
+}
+
+/* Estado: Preparando Pouso (escondido na esquerda) */
+.pre-pouso {
+    transition: none !important; /* Remove a animação para ele "teletransportar" */
+    left: -10000% !important; /* Move para fora da esquerda */
+    transform: translateY(-40px) rotate(10000deg);
+}

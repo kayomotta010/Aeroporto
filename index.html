@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aeroporto Inteligente - Simulação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="painel-aeroporto">
+        <h1>Torre de Controle</h1>
+        
+        <!-- Pista de decolagem -->
+        <div id="pista">
+            <div id="aviao">✈️</div>
+        </div>
+
+        <!-- Painel de Informações -->
+        <div class="info-voo">
+            <p><strong>Voo:</strong> <span id="display-codigo">---</span></p>
+            <p><strong>Rota:</strong> <span id="display-rota">---</span></p>
+            <p><strong>Status:</strong> <span id="display-status">Aguardando</span></p>
+            <p><strong>Altitude:</strong> <span id="display-altitude">0</span> pés</p>
+        </div>
+
+        <!-- Botões de Comando -->
+        <div class="controles">
+            <button class="btn-decolar" onclick="comandarDecolagem()">Decolar</button>
+            <button class="btn-pousar" onclick="comandarPouso()">Pousar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
