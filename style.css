@@ -1,68 +1,237 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.painel-aeroporto {
-    background: white;
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0f172a; /* Dark Blue Aero Theme */
+    color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 28px;
+    text-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+.subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.painel {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    border: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+}
+
+.painel h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #cbd5e1;
+    border-bottom: 2px solid #334155;
+    padding-bottom: 12px;
+}
+
+/* Formulário e Inputs */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #475569;
+    background: #0f172a;
+    color: white;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+}
+
+#avisoSistema {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: #94a3b8;
+}
+
+/* Área de Combustível */
+.combustivel-box {
+    margin-top: auto;
+    background: #0f172a;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    width: 400px;
+    border-radius: 12px;
+    border: 1px solid #1e293b;
     text-align: center;
 }
 
-#pista {
-    height: 100px;
-    position: relative;
-    margin: 20px 0;
-    border-bottom: 5px dashed #ccc;
-    /* overflow: hidden;  <-- REMOVA OU COMENTE ESTA LINHA para o avião poder sair da div */
-}
-
-#aviao {
-    font-size: 50px;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    transition: all 2s ease; /* Tempo da animação: 2 segundos */
-}
-
-/* Classe aplicada ao decolar */
-.decolado {
-    left: 15000% !important; /* Faz ele ir MUITO além da borda direita da tela */
-    transform: translateY(-100px) rotate(-10000deg);
-    transition: all 2s ease-in; /* Dá um efeito de aceleração */
-}
-
-/* Classe aplicada ao iniciar o pouso */
-.pre-pouso {
-    transition: none !important; /* O "teletransporte" para a esquerda continua instantâneo */
-    left: -1500% !important; /* Ele se esconde lá na esquerda antes de voltar */
-    transform: rotate(-10000deg);
-}
-
-.info-voo {
-    text-align: left;
-    background: #eef2f3;
-    padding: 10px;
-    border-radius: 5px;
+#tituloVoo {
+    color: #38bdf8;
+    font-size: 16px;
     margin-bottom: 15px;
 }
 
-button {
-    padding: 10px 15px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    color: white;
-    background-color: #007bff;
+.barra-fundo {
+    width: 100%;
+    height: 24px;
+    background: #334155;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 15px 0;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
 }
 
-button:hover {
-    filter: brightness(90%);
+#progressoCombustivel {
+    height: 100%;
+    background: #10b981; /* Verde padrão */
+    transition: width 0.5s ease, background-color 0.5s ease;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+#painelCombustivel {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Informações da Torre */
+.info-voo {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    background: #0f172a;
+    padding: 18px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #1e293b;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #334155;
+    padding-bottom: 8px;
+}
+.info-item:last-child { border: none; padding-bottom: 0; }
+
+.info-item span { color: #94a3b8; font-size: 13px; font-weight: 600; }
+.info-item strong { color: #f8fafc; font-size: 16px; }
+.status-alert { color: #f59e0b !important; }
+
+/* Animação da Pista */
+#pista {
+    height: 100px;
+    position: relative;
+    margin-bottom: 25px;
+    border-bottom: 4px dashed #64748b;
+    background: #111827;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#aviao {
+    font-size: 45px;
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    transform: scaleX(-1);
+    transition: all 2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.decolado {
+    left: 120% !important; 
+    transform: translateY(-50px) rotate(15deg) scaleX(-1) !important;
+    transition: all 2.5s ease-in !important;
+}
+
+.pre-pouso {
+    transition: none !important;
+    left: -20% !important;
+    transform: translateY(-40px) rotate(0deg) scaleX(-1) !important;
+}
+
+/* Grid de Botões */
+.botoes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+button {
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+button:active:not(:disabled) { transform: scale(0.96); }
+
+.btn-primario { background: #0284c7; }
+.btn-primario:hover:not(:disabled) { background: #0369a1; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4); }
+
+.btn-sucesso { background: #10b981; }
+.btn-sucesso:hover:not(:disabled) { background: #059669; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }
+
+.btn-perigo { background: #ef4444; }
+.btn-perigo:hover:not(:disabled) { background: #dc2626; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4); }
+
+.btn-aviso { background: #f59e0b; }
+.btn-aviso:hover:not(:disabled) { background: #d97706; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); }
+
+.btn-especial { background: #8b5cf6; }
+.btn-especial:hover:not(:disabled) { background: #7c3aed; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); }
+
+/* Responsividade */
+@media (max-width: 800px) {
+    .container { grid-template-columns: 1fr; }
 }

@@ -1,35 +1,87 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aeroporto Inteligente - Simulação</title>
+    <title>Simulador de Aeroporto Integrado</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Central de Comando do Aeroporto</h1>
+        <p class="subtitle">Integração: Controle de Pista & Gestão de Combustível</p>
+    </header>
 
-    <div class="painel-aeroporto">
-        <h1>Torre de Controle</h1>
+    <div class="container">
+        <!-- PAINEL 1: REGISTRO E COMBUSTÍVEL -->
+        <section class="painel">
+            <h2>Terminal de Registro & Abastecimento</h2>
 
-        <div id="pista">
-            <div id="aviao">✈️</div>
-        </div>
+            <div class="input-group">
+                <input type="text" id="inputCodigo" placeholder="Código do Voo (Ex: VIP-001)">
+                <input type="text" id="inputOrigem" placeholder="Origem">
+                <input type="text" id="inputDestino" placeholder="Destino">
+                <button id="btnRegistrar" class="btn-primario">Registrar Voo</button>
+            </div>
 
-        <div class="info-voo">
-            <p><strong>Voo:</strong> <span id="display-codigo">---</span></p>
-            <p><strong>Rota:</strong> <span id="display-rota">---</span></p>
-            <p><strong>Status:</strong> <span id="display-status">Aguardando</span></p>
-            <p><strong>Altitude:</strong> <span id="display-altitude">0</span> pés</p>
-        </div>
+            <p id="avisoSistema">Aguardando registro no sistema...</p>
 
-        <div class="controles">
-            <button class="btn-decolar" onclick="comandarDecolagem()">Decolar</button>
-            <button class="btn-pousar" onclick="comandarPouso()">Pousar</button>
-            <button onclick="ativarSuper()" style="background-color: #6a1b9a; color: white;">Ativar Supersônico</button>
-            <button onclick="carregarAviao()" style="background-color: #2e7d32; color: white;">Embarcar Carga</button>
-        </div>
+            <div class="combustivel-box">
+                <h3 id="tituloVoo">Voo não registrado</h3>
+
+                <div class="barra-fundo">
+                    <div id="progressoCombustivel" style="width: 0%;"></div>
+                </div>
+
+                <p id="painelCombustivel">O tanque está em 0%</p>
+
+                <div class="botoes-grid">
+                    <button id="btnGastar" class="btn-perigo" disabled>Gastar 10% (Teste)</button>
+                    <button id="btnAbastecer" class="btn-sucesso" disabled>Abastecer 10%</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAINEL 2: TORRE DE CONTROLE -->
+        <section class="painel">
+            <h2>Torre de Controle - Pista</h2>
+
+            <div class="info-voo">
+                <div class="info-item">
+                    <span>Status:</span>
+                    <strong id="display-status" class="status-alert">Aguardando</strong>
+                </div>
+
+                <div class="info-item">
+                    <span>Rota:</span>
+                    <strong id="display-rota">---</strong>
+                </div>
+
+                <div class="info-item">
+                    <span>Altitude:</span>
+                    <strong id="display-altitude">0</strong> pés
+                </div>
+            </div>
+
+            <div id="pista">
+                <div id="aviao">✈️</div>
+            </div>
+
+            <div class="botoes-grid">
+                <button id="btnDecolar" class="btn-primario" disabled>🛫 Decolar</button>
+                <button id="btnPousar" class="btn-aviso" disabled>🛬 Pousar</button>
+                <button id="btnSuper" class="btn-especial" style="grid-column: span 2;" disabled>
+                    ⚡ Ativar Supersônico
+                </button>
+            </div>
+        </section>
     </div>
 
+    <!-- Arquivo principal do projeto -->
     <script src="script.js"></script>
+
+    <!-- Atividade de Persistência e Re-hidratação -->
+    <script src="logbook.js"></script>
+
 </body>
 </html>
