@@ -1,4 +1,4 @@
-class Aeronave {
+class Voo {
 constructor(codigo, origem, destino, altitude = 0) {
 this.codigo = codigo;
 this.origem = origem;
@@ -19,11 +19,8 @@ decolar() {
         this.status = "Em voo";
         this.altitude = 35000;
 
-        console.log(`A aeronave ${this.codigo} decolou.`);
-        return true;
+        console.log(`Aeronave ${this.codigo} decolou.`);
     }
-
-    return false;
 }
 
 pousar() {
@@ -31,13 +28,13 @@ pousar() {
         this.status = "Pousando...";
         this.altitude = 5000;
 
-        console.log(`A aeronave ${this.codigo} está pousando.`);
+        console.log(`Aeronave ${this.codigo} está pousando.`);
 
         setTimeout(() => {
             this.status = "Aterrissado";
             this.altitude = 0;
 
-            console.log(`A aeronave ${this.codigo} aterrissou.`);
+            console.log(`Aeronave ${this.codigo} aterrissou.`);
         }, 2000);
     }
 }
@@ -75,15 +72,9 @@ ativarSupersonico() {
     this.status = "Supersônico";
     this.altitude = 60000;
 
-    return true;
-}
-
-corrigirDestino(novoDestino) {
-    this.destino = novoDestino;
-
-    console.log(`Destino atualizado para: ${this.destino}`);
+    console.log("Modo Supersônico ativado!");
 }
 
 }
 
-export default Aeronave;
+export default Voo;
