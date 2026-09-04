@@ -77,4 +77,52 @@ ativarSupersonico() {
 
 }
 
+// ARQUIVO: Voo.js
+export default class Voo {
+    constructor(codigo, origem, destino, tempoParaDecolagem = 3) {
+        this.codigo = codigo;
+        this.origem = origem;
+        this.destino = destino;
+        this.status = "No Solo";
+        this.altitude = 0;
+        this.combustivel = 100;
+        
+        // Atributo temporal para o robô IoT monitorar (em ciclos de 5s)
+        this.tempoParaDecolagem = tempoParaDecolagem; 
+    }
+
+    gastar(quantidade) {
+        if (this.combustivel - quantidade < 0) throw new Error("Combustível insuficiente.");
+        this.combustivel -= quantidade;
+    }
+
+    abastecer(quantidade) {
+        if (this.combustivel + quantidade > 100) throw new Error("Tanque cheio.");
+        this.combustivel += quantidade;
+    }
+
+    decolar() {
+        if (this.combustivel < 15) throw new Error("Combustível baixo para decolar.");
+        this.status = "Em voo";
+        this.altitude = 35000;
+        this.combustivel -= 15;
+    }
+
+    pousar() {
+        this.status = "Pousando...";
+        this.altitude = 5000;
+        setTimeout(() => {
+            this.status = "Aterrissado";
+            this.altitude = 0;
+        }, 2000);
+    }
+
+    ativarSupersonico() {
+        if (this.status !== "Em voo") throw new Error("Aeronave deve estar em voo.");
+        this.status = "Supersônico";
+        this.altitude = 60000;
+        this.combustivel -= 25;
+    }
+}
+
 export default Voo;
